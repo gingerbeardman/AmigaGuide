@@ -8,7 +8,7 @@ Conversion uses [GuideML](https://www.unsatisfactorysoftware.co.uk/index.php?pg=
 
 ## Requirements
 
-- macOS 15.7 or later
+- macOS 13.5 or later
 
 ## Build
 

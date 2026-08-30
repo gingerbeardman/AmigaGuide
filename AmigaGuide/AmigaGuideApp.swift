@@ -7,11 +7,9 @@ struct AmigaGuideApp: App {
             WelcomeView()
         }
         .windowResizability(.contentSize)
-        .defaultLaunchBehavior(.presented)
 
         DocumentGroup(viewing: AmigaGuideDocument.self) { file in
             GuideViewer(html: file.document.html)
         }
-        .defaultLaunchBehavior(.suppressed)
     }
 }
