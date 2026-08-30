@@ -8,7 +8,7 @@ Select a `.guide` file and press Space. If nothing appears, enable the Quick Loo
 
 Conversion uses [GuideML](https://www.unsatisfactorysoftware.co.uk/index.php?pg=guideml) (vendored, with small macOS patches, in `GuideML/`).
 
-DiscMaster has [over 50K AmigaGuide files](https://discmaster.textfiles.com/search?extension=.guide&format=amigaGuide&dedup=dedup) from old Amiga CD-ROMs and disk images — a good place to grab `.guide` documents to try.
+DiscMaster has [over 50K AmigaGuide files](https://discmaster.textfiles.com/search?extension=.guide&format=amigaGuide&dedup=dedup) from old Amiga CD-ROMs and disk images—a good place to grab `.guide` documents to try.
 
 ## Requirements
 
