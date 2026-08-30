@@ -77,6 +77,7 @@ struct AmigaGuideTests {
         #expect(html.contains(".node:target"))
         #expect(html.contains("max-height: 620px"))
         #expect(html.contains("ui-monospace"))
+        #expect(html.contains("font-size: 12px"))
         #expect(html.contains("font-family: inherit"))
         #expect(!html.contains("<script>"))
         #expect(html.contains("<section class=\"node\" id=\"page-main\">"))

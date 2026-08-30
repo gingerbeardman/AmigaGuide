@@ -129,6 +129,8 @@ enum GuideHTML {
           background: #cfcfcf;
           color: #000;
           font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+          font-size: 12px;
+          line-height: 1.25;
         }
         tt, pre, code, font {
           font-family: inherit;
