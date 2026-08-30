@@ -850,7 +850,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideQuickLook/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Look";
+				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuideQuickLook;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -897,7 +897,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideQuickLook/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Look";
+				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuideQuickLook;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -944,7 +944,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideThumbnails/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Thumbnails";
+				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuideThumbnails;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -991,7 +991,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideThumbnails/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Thumbnails";
+				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuideThumbnails;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
