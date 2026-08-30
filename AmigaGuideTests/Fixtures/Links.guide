@@ -1,0 +1,15 @@
+@database Links.guide
+@node MAIN "Welcome"
+@{"Walk" LINK DOWT}
+@{"Req" LINK Req&View}
+@{"Cfg" LINK Config}
+@endnode
+@node DOWT "Walk-through"
+Hello walk
+@endnode
+@node Req&View "Requesters"
+Hello req
+@endnode
+@node Config "Configuration"
+Hello cfg
+@endnode

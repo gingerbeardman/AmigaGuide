@@ -1,17 +1,17 @@
-//
-//  AmigaGuideApp.swift
-//  AmigaGuide
-//
-//  Created by Matt Sephton on 2026-08-30.
-//
-
 import SwiftUI
 
 @main
 struct AmigaGuideApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Window("AmigaGuide", id: "main") {
+            WelcomeView()
         }
+        .windowResizability(.contentSize)
+        .defaultLaunchBehavior(.presented)
+
+        DocumentGroup(viewing: AmigaGuideDocument.self) { file in
+            GuideViewer(html: file.document.html)
+        }
+        .defaultLaunchBehavior(.suppressed)
     }
 }

@@ -1,0 +1,9 @@
+@database Sample.guide
+@author AmigaGuide
+@node MAIN "Welcome"
+This is a @{b}bold@{ub} AmigaGuide preview.
+@{"Next node" LINK second}
+@endnode
+@node second "Second node"
+Hello from the second node.
+@endnode

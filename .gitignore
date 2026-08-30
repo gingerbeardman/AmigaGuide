@@ -1,0 +1,9 @@
+.DS_Store
+xcuserdata/
+*.xcuserstate
+.build/
+DerivedData/
+/build/
+/.nova/
+default.profraw
+*.xcresult
