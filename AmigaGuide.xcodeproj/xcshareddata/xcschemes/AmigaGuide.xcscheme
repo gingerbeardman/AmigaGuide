@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C9113CF230449D760088C087"
-               BuildableName = "AmigaGuide.app"
+               BuildableName = "Amiga Guide.app"
                BlueprintName = "AmigaGuide"
                ReferencedContainer = "container:AmigaGuide.xcodeproj">
             </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9113CF230449D760088C087"
-            BuildableName = "AmigaGuide.app"
+            BuildableName = "Amiga Guide.app"
             BlueprintName = "AmigaGuide"
             ReferencedContainer = "container:AmigaGuide.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9113CF230449D760088C087"
-            BuildableName = "AmigaGuide.app"
+            BuildableName = "Amiga Guide.app"
             BlueprintName = "AmigaGuide"
             ReferencedContainer = "container:AmigaGuide.xcodeproj">
          </BuildableReference>

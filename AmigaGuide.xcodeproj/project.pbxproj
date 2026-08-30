@@ -60,7 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C9113CF330449D760088C087 /* AmigaGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmigaGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9113CF330449D760088C087 /* Amiga Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amiga Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9113D0030449D770088C087 /* AmigaGuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmigaGuideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9113D0A30449D770088C087 /* AmigaGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmigaGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9113D2130449D8E0088C087 /* AmigaGuideQuickLook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AmigaGuideQuickLook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -450,7 +450,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n# Debug-only local install. Archive/export must not rewrite /Applications.\nif [ \"${CONFIGURATION}\" != \"Debug\" ] || [ \"${ACTION}\" != \"build\" ]; then\n  exit 0\nfi\n# This phase runs before Xcode writes the final Info.plist and signs SRC.\nSRC=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"\nDEST=\"/Applications/${FULL_PRODUCT_NAME}\"\nif [ ! -d \"${SRC}\" ]; then\n  exit 0\nfi\nrm -rf \"${DEST}\"\n/usr/bin/ditto \"${SRC}\" \"${DEST}\"\nrm -rf \"${DEST}/Contents/PlugIns/\"*.xctest\n/usr/libexec/PlistBuddy -c 'Set :CFBundleName Amiga Guide' \"${DEST}/Contents/Info.plist\"\n/usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName Amiga Guide' \"${DEST}/Contents/Info.plist\"\nIDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY}\"\nif [ -z \"${IDENTITY}\" ]; then\n  echo \"error: no signing identity; /Applications copy would not launch\" >&2\n  exit 1\nfi\nENTITLEMENTS=\"${SRCROOT}/AmigaGuide/AmigaGuide.entitlements\"\n/usr/bin/codesign --force --sign \"${IDENTITY}\" -o runtime --entitlements \"${ENTITLEMENTS}\" --timestamp=none --generate-entitlement-der \"${DEST}\"\n";
+			shellScript = "set -e\n# Debug-only local install. Archive/export must not rewrite /Applications.\nif [ \"${CONFIGURATION}\" != \"Debug\" ] || [ \"${ACTION}\" != \"build\" ]; then\n  exit 0\nfi\n# This phase runs before Xcode writes the final Info.plist and signs SRC.\nSRC=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"\nDEST=\"/Applications/${FULL_PRODUCT_NAME}\"\nif [ ! -d \"${SRC}\" ]; then\n  exit 0\nfi\nrm -rf \"/Applications/AmigaGuide.app\"\nrm -rf \"${DEST}\"\n/usr/bin/ditto \"${SRC}\" \"${DEST}\"\nrm -rf \"${DEST}/Contents/PlugIns/\"*.xctest\n/usr/libexec/PlistBuddy -c 'Set :CFBundleName Amiga Guide' \"${DEST}/Contents/Info.plist\"\n/usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName Amiga Guide' \"${DEST}/Contents/Info.plist\"\nIDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY}\"\nif [ -z \"${IDENTITY}\" ]; then\n  echo \"error: no signing identity; /Applications copy would not launch\" >&2\n  exit 1\nfi\nENTITLEMENTS=\"${SRCROOT}/AmigaGuide/AmigaGuide.entitlements\"\n/usr/bin/codesign --force --sign \"${IDENTITY}\" -o runtime --entitlements \"${ENTITLEMENTS}\" --timestamp=none --generate-entitlement-der \"${DEST}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -678,7 +678,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
 				PRODUCT_NAME = "Amiga Guide";
-				WRAPPER_NAME = AmigaGuide.app;
 				EXECUTABLE_NAME = AmigaGuide;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -733,7 +732,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
 				PRODUCT_NAME = "Amiga Guide";
-				WRAPPER_NAME = AmigaGuide.app;
 				EXECUTABLE_NAME = AmigaGuide;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -763,7 +761,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmigaGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AmigaGuide";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/$(FULL_PRODUCT_NAME)/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)";
 			};
 			name = Debug;
 		};
@@ -784,7 +782,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmigaGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AmigaGuide";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/$(FULL_PRODUCT_NAME)/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)";
 			};
 			name = Release;
 		};

@@ -12,7 +12,8 @@ set -e
 #        --password "xxxx-xxxx-xxxx-xxxx"
 
 PROJECT_NAME="AmigaGuide"
-APP_NAME="AmigaGuide"
+APP_NAME="Amiga Guide"
+EXECUTABLE_NAME="AmigaGuide"
 SCHEME="AmigaGuide"
 CONFIGURATION="Release"
 KEYCHAIN_PROFILE="notarytool-password"
@@ -24,8 +25,8 @@ BUILD_DIR="$PROJECT_DIR/build"
 ARCHIVE_PATH="$BUILD_DIR/$PROJECT_NAME.xcarchive"
 EXPORT_PATH="$BUILD_DIR/export"
 APP_PATH="$EXPORT_PATH/$APP_NAME.app"
-ZIP_PATH="$BUILD_DIR/$APP_NAME.zip"
-DMG_PATH="$BUILD_DIR/$APP_NAME.dmg"
+ZIP_PATH="$BUILD_DIR/$PROJECT_NAME.zip"
+DMG_PATH="$BUILD_DIR/$PROJECT_NAME.dmg"
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; NC='\033[0m'
 print_step()    { echo -e "\n${GREEN}▶ $1${NC}"; }
@@ -93,7 +94,7 @@ create_dmg() {
     local stage="$BUILD_DIR/dmg"
     rm -rf "$stage"; mkdir -p "$stage"
     ditto --hfsCompression "$APP_PATH" "$stage/$APP_NAME.app"
-    if ! ls -lO "$stage/$APP_NAME.app/Contents/MacOS/$APP_NAME" | grep -q compressed; then
+    if ! ls -lO "$stage/$APP_NAME.app/Contents/MacOS/$EXECUTABLE_NAME" | grep -q compressed; then
         print_error "HFS compression was not applied to the app"; exit 1
     fi
     ln -s /Applications "$stage/Applications"

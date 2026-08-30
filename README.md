@@ -18,7 +18,7 @@ Open `AmigaGuide.xcodeproj` in Xcode, or:
 xcodebuild -scheme AmigaGuide -configuration Debug -destination 'platform=macOS' build
 ```
 
-A Debug build also installs a signed copy to `/Applications/AmigaGuide.app` so Launch Services and Quick Look can find the extension.
+A Debug build also installs a signed copy to `/Applications/Amiga Guide.app` so Launch Services and Quick Look can find the extension.
 
 ## Release
 
