@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct AmigaGuideApp: App {
     var body: some Scene {
-        Window("AmigaGuide", id: "main") {
+        Window(AppInfo.name, id: "main") {
             WelcomeView()
         }
         .windowResizability(.contentSize)

@@ -2,6 +2,14 @@ import AppKit
 import SwiftUI
 import WebKit
 
+enum AppInfo {
+    static var name: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+            ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+            ?? "AmigaGuide"
+    }
+}
+
 enum AmigaGuideLinks {
     /// System Settings Extensions pane — closest public URL to the Quick Look list.
     static let quickLookSettings = URL(string: "x-apple.systempreferences:com.apple.ExtensionsPreferences")!
@@ -20,7 +28,7 @@ struct WelcomeView: View {
                     .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("AmigaGuide")
+                    Text(AppInfo.name)
                         .font(.title2.weight(.semibold))
                     Text("Preview AmigaGuide documents in Finder.")
                         .foregroundStyle(.secondary)
@@ -32,7 +40,7 @@ struct WelcomeView: View {
 
             Link("Open System Settings…", destination: AmigaGuideLinks.quickLookSettings)
 
-            Text("Turn on AmigaGuide under Quick Look.")
+            Text("Turn on \(AppInfo.name) under Quick Look.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
 
