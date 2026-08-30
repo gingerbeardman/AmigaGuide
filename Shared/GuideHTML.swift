@@ -128,7 +128,7 @@ enum GuideHTML {
           margin: 0;
           background: #cfcfcf;
           color: #000;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
         tt, pre, code, font {
           font-family: inherit;
