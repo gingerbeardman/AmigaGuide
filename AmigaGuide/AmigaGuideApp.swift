@@ -25,6 +25,12 @@ struct AmigaGuideApp: App {
                 }
                 .keyboardShortcut("o")
             }
+            CommandGroup(replacing: .help) {
+                Link("\(AppInfo.name) on GitHub", destination: AmigaGuideLinks.github)
+                Button("Check for Updates…") {
+                    UpdateState.shared.checkForUpdates(userInitiated: true)
+                }
+            }
         }
     }
 }
@@ -48,6 +54,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.hideWelcomeWindow()
             }
         }
+        UpdateState.shared.checkForUpdatesInBackground()
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {

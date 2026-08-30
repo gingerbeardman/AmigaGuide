@@ -119,8 +119,10 @@ struct AmigaGuideTests {
         #expect(!AmigaGuideLinks.quickLookSettings.absoluteString.contains("quicklook"))
         #expect(AmigaGuideLinks.guideML.host == "www.unsatisfactorysoftware.co.uk")
         #expect(AmigaGuideLinks.guideML.absoluteString.contains("guideml"))
-        #expect(AmigaGuideLinks.guideMLSource.host == "github.com")
-        #expect(AmigaGuideLinks.guideMLSource.path.contains("AmigaGuide"))
+        #expect(AmigaGuideLinks.github.host == "github.com")
+        #expect(AmigaGuideLinks.github.path.contains("AmigaGuide"))
+        #expect(AmigaGuideLinks.guideMLSource == AmigaGuideLinks.github)
+        #expect(AmigaGuideLinks.githubReleases.path.contains("AmigaGuide/releases"))
     }
 
     @Test func convertTwiceDoesNotCrash() throws {
