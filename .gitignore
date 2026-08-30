@@ -1,10 +1,8 @@
 .DS_Store
+build/
+build-sandbox/
 xcuserdata/
-*.xcuserstate
-.build/
-DerivedData/
-/build/
-/build-sandbox/
-default.profraw
+*.profraw
+.derivedData*
 *.xcresult
 Icon-App-Name.iconset/
