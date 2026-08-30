@@ -30,15 +30,20 @@ struct WelcomeView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(AppInfo.name)
                         .font(.title2.weight(.semibold))
-                    Text("Preview AmigaGuide documents in Finder.")
+                    Text("Open and preview AmigaGuide documents.")
                         .foregroundStyle(.secondary)
                 }
             }
 
-            Text("Select a .guide file and press Space. If no preview appears, enable the Quick Look extension.")
+            Text("Open a .guide file, or select one in Finder and press Space. If no preview appears, enable the Quick Look extension.")
                 .fixedSize(horizontal: false, vertical: true)
 
-            Link("Open System Settings…", destination: AmigaGuideLinks.quickLookSettings)
+            HStack(spacing: 12) {
+                Button("Open…") {
+                    AppDelegate.openGuides()
+                }
+                Link("Open System Settings…", destination: AmigaGuideLinks.quickLookSettings)
+            }
 
             Text("Turn on \(AppInfo.name) under Quick Look.")
                 .font(.callout)
@@ -74,14 +79,25 @@ private struct GuideWebView: NSViewRepresentable {
 
     func makeNSView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
-        configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        configuration.defaultWebpagePreferences.allowsContentJavaScript = false
         let webView = WKWebView(frame: .zero, configuration: configuration)
+        context.coordinator.lastHTML = html
         webView.loadHTMLString(html, baseURL: nil)
         return webView
     }
 
     func updateNSView(_ webView: WKWebView, context: Context) {
+        guard html != context.coordinator.lastHTML else { return }
+        context.coordinator.lastHTML = html
         webView.loadHTMLString(html, baseURL: nil)
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+
+    final class Coordinator {
+        var lastHTML: String?
     }
 }
 

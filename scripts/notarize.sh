@@ -17,7 +17,7 @@ EXECUTABLE_NAME="AmigaGuide"
 SCHEME="AmigaGuide"
 CONFIGURATION="Release"
 KEYCHAIN_PROFILE="notarytool-password"
-VERSION="1.0"
+VERSION="2.0"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"

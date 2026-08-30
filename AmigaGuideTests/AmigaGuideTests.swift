@@ -96,6 +96,23 @@ struct AmigaGuideTests {
         #expect(AppInfo.name == "Amiga Guide")
     }
 
+    @Test func opensOurUTIAndApplesGuideAsAlternate() {
+        let ids = AmigaGuideDocument.readableContentTypes.map(\.identifier)
+        #expect(ids.contains("com.gingerbeardman.amigaguide"))
+        #expect(ids.contains("com.apple.documentation.guide"))
+
+        let types = Bundle.main.object(forInfoDictionaryKey: "CFBundleDocumentTypes") as? [[String: Any]] ?? []
+        let owner = types.first {
+            ($0["LSItemContentTypes"] as? [String])?.contains("com.gingerbeardman.amigaguide") == true
+        }
+        let alternate = types.first {
+            ($0["LSItemContentTypes"] as? [String])?.contains("com.apple.documentation.guide") == true
+        }
+        #expect(owner?["LSHandlerRank"] as? String == "Owner")
+        #expect(alternate?["LSHandlerRank"] as? String == "Alternate")
+        #expect(Bundle.main.object(forInfoDictionaryKey: "UTImportedTypeDeclarations") == nil)
+    }
+
     @Test func welcomeLinksPointAtSettingsAndGuideML() {
         #expect(AmigaGuideLinks.quickLookSettings.scheme == "x-apple.systempreferences")
         #expect(AmigaGuideLinks.quickLookSettings.absoluteString.contains("ExtensionsPreferences"))

@@ -14,6 +14,17 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.gingerbeardman.amigaguide</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>AmigaGuide Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
 				<string>com.apple.documentation.guide</string>
 			</array>
 		</dict>
@@ -24,27 +35,6 @@
 	<string>Amiga Guide</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
-	<key>UTImportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.text</string>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>AmigaGuide Document</string>
-			<key>UTTypeIdentifier</key>
-			<string>com.apple.documentation.guide</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>guide</string>
-				</array>
-			</dict>
-		</dict>
-	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
