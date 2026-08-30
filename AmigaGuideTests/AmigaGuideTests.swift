@@ -89,6 +89,10 @@ struct AmigaGuideTests {
         #expect(text.contains("Welcome") || text.lowercased().contains("bold"))
     }
 
+    @Test func displayNameIsAmigaGuideWithASpace() {
+        #expect(AppInfo.name == "Amiga Guide")
+    }
+
     @Test func welcomeLinksPointAtSettingsAndGuideML() {
         #expect(AmigaGuideLinks.quickLookSettings.scheme == "x-apple.systempreferences")
         #expect(AmigaGuideLinks.quickLookSettings.absoluteString.contains("ExtensionsPreferences"))

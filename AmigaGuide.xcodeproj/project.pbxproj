@@ -660,7 +660,8 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuide/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuide;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
+				INFOPLIST_KEY_CFBundleName = "Amiga Guide";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -712,7 +713,8 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuide/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuide;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
+				INFOPLIST_KEY_CFBundleName = "Amiga Guide";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -842,7 +844,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideQuickLook/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuide;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -889,7 +891,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideQuickLook/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuide;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -936,7 +938,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideThumbnails/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuide;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -983,7 +985,7 @@
 					"$(SRCROOT)/GuideML/Sources",
 				);
 				INFOPLIST_FILE = AmigaGuideThumbnails/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AmigaGuide;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
