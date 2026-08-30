@@ -199,7 +199,7 @@
 		C9113CF430449D760088C087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9113CF330449D760088C087 /* AmigaGuide.app */,
+				C9113CF330449D760088C087 /* Amiga Guide.app */,
 				C9113D0030449D770088C087 /* AmigaGuideTests.xctest */,
 				C9113D0A30449D770088C087 /* AmigaGuideUITests.xctest */,
 				C9113D2130449D8E0088C087 /* AmigaGuideQuickLook.appex */,
@@ -245,7 +245,7 @@
 			packageProductDependencies = (
 			);
 			productName = AmigaGuide;
-			productReference = C9113CF330449D760088C087 /* AmigaGuide.app */;
+			productReference = C9113CF330449D760088C087 /* Amiga Guide.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C9113CFF30449D770088C087 /* AmigaGuideTests */ = {
@@ -652,6 +652,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
+				EXECUTABLE_NAME = AmigaGuide;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -663,7 +664,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
 				INFOPLIST_KEY_CFBundleName = "Amiga Guide";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -678,7 +679,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
 				PRODUCT_NAME = "Amiga Guide";
-				EXECUTABLE_NAME = AmigaGuide;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -706,6 +706,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
+				EXECUTABLE_NAME = AmigaGuide;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -717,7 +718,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
 				INFOPLIST_KEY_CFBundleName = "Amiga Guide";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -732,7 +733,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
 				PRODUCT_NAME = "Amiga Guide";
-				EXECUTABLE_NAME = AmigaGuide;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -752,6 +752,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideTests;
@@ -773,6 +774,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideTests;
@@ -793,6 +795,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideUITests;
@@ -813,6 +816,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideUITests;
@@ -847,7 +851,7 @@
 				);
 				INFOPLIST_FILE = AmigaGuideQuickLook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -894,7 +898,7 @@
 				);
 				INFOPLIST_FILE = AmigaGuideQuickLook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -941,7 +945,7 @@
 				);
 				INFOPLIST_FILE = AmigaGuideThumbnails/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -988,7 +992,7 @@
 				);
 				INFOPLIST_FILE = AmigaGuideThumbnails/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Guide";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
