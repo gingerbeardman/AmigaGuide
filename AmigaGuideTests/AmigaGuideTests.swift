@@ -76,6 +76,8 @@ struct AmigaGuideTests {
         let html = try GuideMLConverter.htmlString(fromGuideAt: url)
         #expect(html.contains(".node:target"))
         #expect(html.contains("max-height: 620px"))
+        #expect(html.contains("-apple-system"))
+        #expect(html.contains("font-family: inherit"))
         #expect(!html.contains("<script>"))
         #expect(html.contains("<section class=\"node\" id=\"page-main\">"))
         #expect(html.contains("<section class=\"node\" id=\"page-dowt\">"))

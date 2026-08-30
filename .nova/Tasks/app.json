@@ -1,0 +1,16 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "pkill -x AmigaGuide 2>/dev/null || true; pkill -x 'Amiga Guide' 2>/dev/null || true; xcodebuild -project AmigaGuide.xcodeproj -scheme AmigaGuide -configuration Debug -destination 'platform=macOS' -derivedDataPath build-sandbox ENABLE_APP_SANDBOX=YES CODE_SIGN_ENTITLEMENTS=AmigaGuide/AmigaGuide.entitlements SWIFT_ACTIVE_COMPILATION_CONDITIONS='DEBUG' build && open \"build-sandbox/Build/Products/Debug/Amiga Guide.app\""
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "trash ./build/ ./build-sandbox/ 2>/dev/null || true"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "pkill -x AmigaGuide 2>/dev/null || true; pkill -x 'Amiga Guide' 2>/dev/null || true; xcodebuild -project AmigaGuide.xcodeproj -scheme AmigaGuide -configuration Debug -destination 'platform=macOS' -derivedDataPath build ENABLE_APP_SANDBOX=NO CODE_SIGN_ENTITLEMENTS='' SWIFT_ACTIVE_COMPILATION_CONDITIONS='DEBUG' build && open \"build/Build/Products/Debug/Amiga Guide.app\""
+    }
+  }
+}
