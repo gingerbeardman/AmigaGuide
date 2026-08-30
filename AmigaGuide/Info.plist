@@ -18,6 +18,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Amiga Guide</string>
+	<key>CFBundleName</key>
+	<string>Amiga Guide</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>UTImportedTypeDeclarations</key>

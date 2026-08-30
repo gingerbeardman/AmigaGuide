@@ -1,0 +1,3 @@
+/* Menu bar and About panel use CFBundleName. */
+"CFBundleName" = "Amiga Guide";
+"CFBundleDisplayName" = "Amiga Guide";

@@ -450,7 +450,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n# Debug-only local install. Archive/export must not rewrite /Applications.\nif [ \"${CONFIGURATION}\" != \"Debug\" ] || [ \"${ACTION}\" != \"build\" ]; then\n  exit 0\nfi\n# This phase runs before Xcode signs SRC, so the copy must be signed here\n# or Launch Services will refuse it (\"corrupted\" / POSIX 153).\nSRC=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"\nDEST=\"/Applications/${FULL_PRODUCT_NAME}\"\nif [ ! -d \"${SRC}\" ]; then\n  exit 0\nfi\nrm -rf \"${DEST}\"\n/usr/bin/ditto \"${SRC}\" \"${DEST}\"\nrm -rf \"${DEST}/Contents/PlugIns/\"*.xctest\nIDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY}\"\nif [ -z \"${IDENTITY}\" ]; then\n  echo \"error: no signing identity; /Applications copy would not launch\" >&2\n  exit 1\nfi\nENTITLEMENTS=\"${SRCROOT}/AmigaGuide/AmigaGuide.entitlements\"\n/usr/bin/codesign --force --sign \"${IDENTITY}\" -o runtime --entitlements \"${ENTITLEMENTS}\" --timestamp=none --generate-entitlement-der \"${DEST}\"\n";
+			shellScript = "set -e\n# Debug-only local install. Archive/export must not rewrite /Applications.\nif [ \"${CONFIGURATION}\" != \"Debug\" ] || [ \"${ACTION}\" != \"build\" ]; then\n  exit 0\nfi\n# This phase runs before Xcode writes the final Info.plist and signs SRC.\nSRC=\"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\"\nDEST=\"/Applications/${FULL_PRODUCT_NAME}\"\nif [ ! -d \"${SRC}\" ]; then\n  exit 0\nfi\nrm -rf \"${DEST}\"\n/usr/bin/ditto \"${SRC}\" \"${DEST}\"\nrm -rf \"${DEST}/Contents/PlugIns/\"*.xctest\n/usr/libexec/PlistBuddy -c 'Set :CFBundleName Amiga Guide' \"${DEST}/Contents/Info.plist\"\n/usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName Amiga Guide' \"${DEST}/Contents/Info.plist\"\nIDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY}\"\nif [ -z \"${IDENTITY}\" ]; then\n  echo \"error: no signing identity; /Applications copy would not launch\" >&2\n  exit 1\nfi\nENTITLEMENTS=\"${SRCROOT}/AmigaGuide/AmigaGuide.entitlements\"\n/usr/bin/codesign --force --sign \"${IDENTITY}\" -o runtime --entitlements \"${ENTITLEMENTS}\" --timestamp=none --generate-entitlement-der \"${DEST}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -677,7 +677,9 @@
 					"-w",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Amiga Guide";
+				WRAPPER_NAME = AmigaGuide.app;
+				EXECUTABLE_NAME = AmigaGuide;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -730,7 +732,9 @@
 					"-w",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Amiga Guide";
+				WRAPPER_NAME = AmigaGuide.app;
+				EXECUTABLE_NAME = AmigaGuide;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
