@@ -644,14 +644,14 @@
 				CODE_SIGN_ENTITLEMENTS = AmigaGuide/AmigaGuide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				EXECUTABLE_NAME = AmigaGuide;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -670,7 +670,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-D__HAIKU__",
@@ -678,6 +678,7 @@
 					"-w",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
+				PRODUCT_MODULE_NAME = AmigaGuide;
 				PRODUCT_NAME = "Amiga Guide";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -698,14 +699,14 @@
 				CODE_SIGN_ENTITLEMENTS = AmigaGuide/AmigaGuide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				EXECUTABLE_NAME = AmigaGuide;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -724,7 +725,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-D__HAIKU__",
@@ -732,6 +733,7 @@
 					"-w",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuide;
+				PRODUCT_MODULE_NAME = AmigaGuide;
 				PRODUCT_NAME = "Amiga Guide";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -749,12 +751,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -762,7 +764,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/$(FULL_PRODUCT_NAME)/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amiga Guide.app/Contents/MacOS/AmigaGuide";
 			};
 			name = Debug;
 		};
@@ -771,12 +773,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -784,7 +786,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/$(FULL_PRODUCT_NAME)/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amiga Guide.app/Contents/MacOS/AmigaGuide";
 			};
 			name = Release;
 		};
@@ -792,12 +794,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -813,12 +815,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Matt Sephton";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gingerbeardman.AmigaGuideUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -835,7 +837,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AmigaGuideQuickLook/AmigaGuideQuickLook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -858,7 +860,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-D__HAIKU__",
@@ -882,7 +884,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AmigaGuideQuickLook/AmigaGuideQuickLook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -905,7 +907,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-D__HAIKU__",
@@ -929,7 +931,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AmigaGuideThumbnails/AmigaGuideThumbnails.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -952,7 +954,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-D__HAIKU__",
@@ -976,7 +978,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AmigaGuideThumbnails/AmigaGuideThumbnails.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = Q3Z639YB49;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -999,7 +1001,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-D__HAIKU__",

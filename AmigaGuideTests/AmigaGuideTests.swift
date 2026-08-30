@@ -92,6 +92,42 @@ struct AmigaGuideTests {
         #expect(text.contains("Welcome") || text.lowercased().contains("bold"))
     }
 
+    @Test func suggestedHTMLFilenameReplacesGuideExtension() {
+        let url = URL(fileURLWithPath: "/tmp/DopusV4.guide")
+        #expect(GuideMLConverter.suggestedHTMLFilename(for: url) == "DopusV4.html")
+    }
+
+    @Test func writesUTF8HTMLToDisk() throws {
+        let html = try GuideMLConverter.htmlString(fromGuideAt: try fixtureURL("Sample.guide"))
+        let dest = FileManager.default.temporaryDirectory
+            .appendingPathComponent("AmigaGuide-save-\(UUID().uuidString).html")
+        defer { try? FileManager.default.removeItem(at: dest) }
+        try GuideMLConverter.writeUTF8HTML(html, to: dest)
+        let text = try String(contentsOf: dest, encoding: .utf8)
+        #expect(text.contains("charset=\"utf-8\""))
+        #expect(text.contains("Welcome"))
+        #expect(text.contains("<section class=\"node\""))
+    }
+
+    @Test func producedHTMLHasNoRemoteResources() throws {
+        let html = try GuideMLConverter.htmlString(fromGuideAt: try fixtureURL("Sample.guide"))
+        #expect(!html.lowercased().contains("<script"))
+        #expect(!html.lowercased().contains("stylesheet"))
+        #expect(!html.contains("<img "))
+        #expect(!html.contains("src=\"http"))
+        #expect(!html.contains("src=\"https"))
+        // GuideML attribution and the HTML 4.01 DTD — not loaded as page resources.
+        #expect(html.contains("https://www.unsatisfactorysoftware.co.uk"))
+        #expect(html.contains("http://www.w3.org/TR/html4/loose.dtd"))
+    }
+
+    @Test func guideContentURLsArePreservedAsLinks() throws {
+        let html = try GuideMLConverter.htmlString(fromGuideAt: try fixtureURL("GuideML.guide"))
+        #expect(html.contains("href=\"http://www.aminet.net"))
+        #expect(html.contains("href=\"https://github.com/chris-y/guideml"))
+        #expect(html.contains("href=\"http://www.shredzone.de"))
+    }
+
     @Test func displayNameIsAmigaGuideWithASpace() {
         #expect(AppInfo.name == "Amiga Guide")
     }

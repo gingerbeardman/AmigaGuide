@@ -74,17 +74,30 @@ enum GuideMLConverter: Sendable {
         return GuideHTML.paginatedDocument(from: raw)
     }
 
-    /// Writes UTF-8 HTML to a temp file.
-    nonisolated static func htmlFile(fromGuideAt url: URL) throws -> URL {
-        var html = try htmlString(fromGuideAt: url)
-        html = html.replacingOccurrences(
+    /// Default name for a saved HTML copy of `guideURL`.
+    nonisolated static func suggestedHTMLFilename(for guideURL: URL) -> String {
+        guideURL.deletingPathExtension().lastPathComponent + ".html"
+    }
+
+    /// Rewrites GuideML's charset-less meta so the file is valid UTF-8 HTML.
+    nonisolated static func utf8HTML(from html: String) -> String {
+        html.replacingOccurrences(
             of: "<meta http-equiv=\"Content-Type\" content=\"text/html\">",
             with: "<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
             options: .caseInsensitive
         )
+    }
+
+    /// Writes UTF-8 HTML to `url`.
+    nonisolated static func writeUTF8HTML(_ html: String, to url: URL) throws {
+        try utf8HTML(from: html).write(to: url, atomically: true, encoding: .utf8)
+    }
+
+    /// Writes UTF-8 HTML to a temp file.
+    nonisolated static func htmlFile(fromGuideAt url: URL) throws -> URL {
         let dest = FileManager.default.temporaryDirectory
             .appendingPathComponent("GuideML-\(UUID().uuidString).html")
-        try html.write(to: dest, atomically: true, encoding: .utf8)
+        try writeUTF8HTML(try htmlString(fromGuideAt: url), to: dest)
         return dest
     }
 
