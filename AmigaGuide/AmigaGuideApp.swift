@@ -70,6 +70,11 @@ struct AmigaGuideApp: App {
                 }
                 .keyboardShortcut("s")
                 .disabled(!session.canSave)
+                Divider()
+                Button("Open in \(TextEditorApp.name)") {
+                    GuideWindowController.openFrontmostInTextEditor()
+                }
+                .disabled(!session.canSave)
             }
             CommandGroup(replacing: .help) {
                 Link("\(AppInfo.name) on GitHub", destination: AmigaGuideLinks.github)
@@ -208,15 +213,26 @@ final class GuideWindowController: NSWindowController, NSWindowDelegate {
         }
     }
 
-    static func saveFrontmost() {
-        let controller = openControllers.first { $0.window?.isKeyWindow == true }
+    private static var frontmost: GuideWindowController? {
+        openControllers.first { $0.window?.isKeyWindow == true }
             ?? openControllers.first { $0.window?.isMainWindow == true }
             ?? openControllers.last
-        guard let controller else {
+    }
+
+    static func saveFrontmost() {
+        guard let controller = frontmost else {
             NSSound.beep()
             return
         }
-        controller.saveHTML()
+        controller.saveConverted()
+    }
+
+    static func openFrontmostInTextEditor() {
+        guard let controller = frontmost else {
+            NSSound.beep()
+            return
+        }
+        controller.openInTextEditor()
     }
 
     private let html: String
@@ -258,15 +274,45 @@ final class GuideWindowController: NSWindowController, NSWindowDelegate {
         GuideSession.shared.refresh()
     }
 
-    private func saveHTML() {
+    private func openInTextEditor() {
+        guard let appURL = TextEditorApp.url else {
+            let alert = NSAlert()
+            alert.messageText = "Couldn’t find a text editor."
+            alert.informativeText = "Install TextEdit, or set a default app for plain text files."
+            alert.runModal()
+            return
+        }
+        let accessing = fileURL.startAccessingSecurityScopedResource()
+        defer {
+            if accessing {
+                fileURL.stopAccessingSecurityScopedResource()
+            }
+        }
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = true
+        NSWorkspace.shared.open(
+            [fileURL],
+            withApplicationAt: appURL,
+            configuration: configuration
+        ) { _, error in
+            guard let error else { return }
+            DispatchQueue.main.async {
+                NSAlert(error: error).runModal()
+            }
+        }
+    }
+
+    private func saveConverted() {
         let panel = NSSavePanel()
-        panel.allowedContentTypes = [.html]
         panel.canCreateDirectories = true
+        panel.allowsOtherFileTypes = false
         panel.isExtensionHidden = false
         panel.nameFieldStringValue = fileURL.deletingPathExtension().lastPathComponent
         panel.directoryURL = fileURL.deletingLastPathComponent()
-        panel.message = "Save the converted HTML."
+        panel.message = "Save the converted document."
         panel.prompt = "Save"
+
+        let picker = SaveFormatPicker.attach(to: panel, default: .html)
         guard panel.runModal() == .OK, let dest = panel.url else { return }
         do {
             let accessing = dest.startAccessingSecurityScopedResource()
@@ -275,9 +321,140 @@ final class GuideWindowController: NSWindowController, NSWindowDelegate {
                     dest.stopAccessingSecurityScopedResource()
                 }
             }
-            try GuideMLConverter.writeUTF8HTML(html, to: dest)
+            if picker.selected == .epub || dest.pathExtension.lowercased() == "epub" {
+                try GuideMLConverter.writeEPUB(
+                    html,
+                    title: fileURL.deletingPathExtension().lastPathComponent,
+                    author: GuideMetadata.creator(fromGuideAt: fileURL),
+                    to: dest
+                )
+            } else {
+                try GuideMLConverter.writeUTF8HTML(html, to: dest)
+            }
         } catch {
             NSAlert(error: error).runModal()
         }
+    }
+}
+
+enum TextEditorApp {
+    private static let xcodeBundleID = "com.apple.dt.Xcode"
+    private static let textEditBundleID = "com.apple.TextEdit"
+
+    static var url: URL? {
+        if let candidate = NSWorkspace.shared.urlForApplication(toOpen: UTType.plainText),
+           !isXcode(candidate) {
+            return candidate
+        }
+        return NSWorkspace.shared.urlForApplication(withBundleIdentifier: textEditBundleID)
+    }
+
+    static var name: String {
+        guard let url else { return "TextEdit" }
+        return FileManager.default.displayName(atPath: url.path)
+    }
+
+    private static func isXcode(_ url: URL) -> Bool {
+        let id = Bundle(url: url)?.bundleIdentifier ?? ""
+        return id == xcodeBundleID || id.hasPrefix("\(xcodeBundleID).")
+    }
+}
+
+private var saveFormatPickerKey: UInt8 = 0
+
+/// Dottie-style Format popup in the save panel accessory view.
+private enum SaveFormat: CaseIterable {
+    case html
+    case epub
+
+    var title: String {
+        switch self {
+        case .html: return "HTML"
+        case .epub: return "EPUB"
+        }
+    }
+
+    var pathExtension: String {
+        switch self {
+        case .html: return "html"
+        case .epub: return "epub"
+        }
+    }
+
+    var contentType: UTType {
+        switch self {
+        case .html: return .html
+        case .epub: return .epub
+        }
+    }
+}
+
+private final class SaveFormatPicker: NSObject {
+    private let panel: NSSavePanel
+    private let popup: NSPopUpButton
+
+    var selected: SaveFormat {
+        SaveFormat.allCases[popup.indexOfSelectedItem]
+    }
+
+    @discardableResult
+    static func attach(to panel: NSSavePanel, default format: SaveFormat) -> SaveFormatPicker {
+        let picker = SaveFormatPicker(panel: panel)
+        picker.apply(format)
+        picker.popup.selectItem(at: SaveFormat.allCases.firstIndex(of: format) ?? 0)
+        panel.accessoryView = picker.makeAccessoryView()
+        objc_setAssociatedObject(
+            panel,
+            &saveFormatPickerKey,
+            picker,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+        )
+        return picker
+    }
+
+    private init(panel: NSSavePanel) {
+        self.panel = panel
+        self.popup = NSPopUpButton(frame: NSRect(x: 0, y: 0, width: 180, height: 24), pullsDown: false)
+        super.init()
+        for format in SaveFormat.allCases {
+            popup.addItem(withTitle: format.title)
+        }
+        popup.target = self
+        popup.action = #selector(formatChanged(_:))
+    }
+
+    private func makeAccessoryView() -> NSView {
+        let label = NSTextField(labelWithString: "Format:")
+        label.isEditable = false
+        label.isSelectable = false
+        label.backgroundColor = .clear
+        label.isBordered = false
+
+        let row = NSStackView(views: [label, popup])
+        row.orientation = .horizontal
+        row.alignment = .firstBaseline
+        row.spacing = 6
+        row.translatesAutoresizingMaskIntoConstraints = false
+
+        let accessory = NSView(frame: NSRect(x: 0, y: 0, width: 480, height: 40))
+        accessory.autoresizingMask = [.width]
+        accessory.addSubview(row)
+        NSLayoutConstraint.activate([
+            row.centerXAnchor.constraint(equalTo: accessory.centerXAnchor),
+            row.centerYAnchor.constraint(equalTo: accessory.centerYAnchor),
+            row.leadingAnchor.constraint(greaterThanOrEqualTo: accessory.leadingAnchor, constant: 20),
+            row.trailingAnchor.constraint(lessThanOrEqualTo: accessory.trailingAnchor, constant: -20)
+        ])
+        return accessory
+    }
+
+    @objc private func formatChanged(_ sender: NSPopUpButton) {
+        apply(SaveFormat.allCases[sender.indexOfSelectedItem])
+    }
+
+    private func apply(_ format: SaveFormat) {
+        panel.allowedContentTypes = [format.contentType]
+        let base = (panel.nameFieldStringValue as NSString).deletingPathExtension
+        panel.nameFieldStringValue = base.isEmpty ? format.pathExtension : "\(base).\(format.pathExtension)"
     }
 }

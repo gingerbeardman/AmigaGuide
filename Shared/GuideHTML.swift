@@ -1,6 +1,13 @@
 import Foundation
 
 enum GuideHTML {
+    struct Node: Equatable, Sendable {
+        var id: String
+        var name: String
+        var title: String
+        var innerHTML: String
+    }
+
     /// Turns GuideML's one-file dump into a node-at-a-time document:
     /// only the current section is visible and scrollable.
     static func paginatedDocument(from html: String) -> String {
@@ -8,6 +15,42 @@ enum GuideHTML {
         document = wrapNodes(in: document)
         document = injectPagerStyle(in: document)
         return document
+    }
+
+    /// Pages from a paginated GuideML document, in document order.
+    static func nodes(in html: String) -> [Node] {
+        guard let regex = try? NSRegularExpression(
+            pattern: #"<section class="node" id="([^"]+)"(?:\s+data-node="([^"]*)")?>(.*?)</section>"#,
+            options: [.caseInsensitive, .dotMatchesLineSeparators]
+        ) else {
+            return []
+        }
+
+        let ns = html as NSString
+        return regex.matches(in: html, range: NSRange(location: 0, length: ns.length)).compactMap { match in
+            guard match.numberOfRanges >= 4 else { return nil }
+            let id = ns.substring(with: match.range(at: 1))
+            let name: String
+            if match.range(at: 2).location != NSNotFound, match.range(at: 2).length > 0 {
+                name = decodeAttr(ns.substring(with: match.range(at: 2)))
+            } else {
+                name = id.hasPrefix("page-") ? String(id.dropFirst(5)).replacingOccurrences(of: "_", with: ".") : id
+            }
+            let innerHTML = ns.substring(with: match.range(at: 3))
+            return Node(id: id, name: name, title: title(from: innerHTML, fallbackID: id), innerHTML: innerHTML)
+        }
+    }
+
+    static func metaContent(named name: String, in html: String) -> String? {
+        let pattern = #"<meta\s+name="\#(NSRegularExpression.escapedPattern(for: name))"\s+content="([^"]*)""#
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]),
+              let match = regex.firstMatch(in: html, range: NSRange(location: 0, length: (html as NSString).length)),
+              match.numberOfRanges == 2,
+              let range = Range(match.range(at: 1), in: html) else {
+            return nil
+        }
+        let value = String(html[range]).trimmingCharacters(in: .whitespacesAndNewlines)
+        return value.isEmpty ? nil : value
     }
 
     /// DiscMaster-style fragment IDs: `page-dowt`, `page-req_view`, `page-1_1`.
@@ -55,6 +98,43 @@ enum GuideHTML {
             result.replaceSubrange(full, with: "href=\"\(rewritten)\"")
         }
         return result
+    }
+
+    private static func title(from innerHTML: String, fallbackID: String) -> String {
+        let raw: String
+        if let close = innerHTML.range(of: "</a>", options: .caseInsensitive) {
+            raw = String(innerHTML[..<close.lowerBound])
+        } else if let tag = innerHTML.range(of: "<") {
+            raw = String(innerHTML[..<tag.lowerBound])
+        } else {
+            raw = innerHTML
+        }
+        let stripped = raw.replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
+        let decoded = stripped
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        if !decoded.isEmpty {
+            return decoded
+        }
+        let fallback = fallbackID.hasPrefix("page-") ? String(fallbackID.dropFirst(5)) : fallbackID
+        return fallback.replacingOccurrences(of: "_", with: " ")
+    }
+
+    private static func encodeAttr(_ value: String) -> String {
+        value
+            .replacingOccurrences(of: "&", with: "&amp;")
+            .replacingOccurrences(of: "\"", with: "&quot;")
+            .replacingOccurrences(of: "<", with: "&lt;")
+    }
+
+    private static func decodeAttr(_ value: String) -> String {
+        value
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&amp;", with: "&")
     }
 
     private static func rewrittenHREF(_ value: String) -> String? {
@@ -107,7 +187,7 @@ enum GuideHTML {
             if let tagEnd = chunk.range(of: ">") {
                 chunk = String(chunk[chunk.index(after: tagEnd.lowerBound)...])
             }
-            wrapped += "<section class=\"node\" id=\"\(nodeID)\">"
+            wrapped += "<section class=\"node\" id=\"\(nodeID)\" data-node=\"\(encodeAttr(decodeAttr(rawName)))\">"
             wrapped += chunk
             wrapped += "</section>\n"
         }
@@ -138,8 +218,12 @@ enum GuideHTML {
         .node {
           display: none;
           box-sizing: border-box;
+          width: 100%;
+          max-width: 56em;
+          max-width: 96ch;
           max-height: 620px;
           overflow: auto;
+          margin: 0 auto;
           padding: 8px 14px 20px;
         }
         .node:first-of-type { display: block; }
@@ -148,8 +232,11 @@ enum GuideHTML {
         .node:target ~ .node { display: none; }
         .node pre {
           margin: 0.5em 0 0;
+          width: 100%;
+          max-width: 100%;
           white-space: pre-wrap;
-          overflow-wrap: anywhere;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
         }
         </style>
         """

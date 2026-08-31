@@ -79,6 +79,16 @@ enum GuideMLConverter: Sendable {
         guideURL.deletingPathExtension().lastPathComponent + ".html"
     }
 
+    /// Default name for a saved EPUB copy of `guideURL`.
+    nonisolated static func suggestedEPUBFilename(for guideURL: URL) -> String {
+        guideURL.deletingPathExtension().lastPathComponent + ".epub"
+    }
+
+    /// Writes a node-per-file EPUB to `url`.
+    nonisolated static func writeEPUB(_ html: String, title: String, author: String? = nil, to url: URL) throws {
+        try GuideEPUB.write(html: html, title: title, author: author, to: url)
+    }
+
     /// Rewrites GuideML's charset-less meta so the file is valid UTF-8 HTML.
     nonisolated static func utf8HTML(from html: String) -> String {
         html.replacingOccurrences(
