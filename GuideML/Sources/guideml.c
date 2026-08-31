@@ -941,17 +941,32 @@ if((param.smartwrap) && (strlen(buf)<2))
           if(-1 == FPuts(fh,"http://")) return(0);
 
         bufstart = --buf;
-        while(ch = *buf++)
         {
-          if(' '==ch || '\n'==ch || ')'==ch || ('@'==ch && '{'==*buf)) break;
-          if(-1 == FPutC(fh,ch)) return(0);
+          STRPTR urlend = buf;
+          STRPTR p;
+          unsigned char last;
+          while((ch = *urlend) && ch!=' ' && ch!='\n' && ch!=')'
+                && !(ch=='@' && urlend[1]=='{'))
+            urlend++;
+          /* Don't swallow sentence punctuation: "http://host/path. Next" */
+          while(urlend > buf+1)
+          {
+            last = *(urlend-1);
+            if(last=='.' || last==',' || last==';' || last==':'
+               || last=='!' || last=='?')
+              urlend--;
+            else
+              break;
+          }
+          for(p=buf; p<urlend; p++)
+            if(-1 == FPutC(fh,*p)) return(0);
+          if(-1 == FPuts(fh,"\">")) return(0);
+          for(p=buf; p<urlend; p++)
+            if(-1 == FPutC(fh,*p)) return(0);
+          if(-1 == FPuts(fh,"</a>")) return(0);
+          buf = urlend;
+          if(!(ch = *buf++)) break;
         }
-        if(-1 == FPuts(fh,"\">")) return(0);
-        for(;bufstart<buf-1;bufstart++)     // followed by a verbatim copy
-        {
-          if(-1 == FPutC(fh,*bufstart)) return(0);
-        }
-        if(-1 == FPuts(fh,"</a>")) return(0);
       }
     }
 

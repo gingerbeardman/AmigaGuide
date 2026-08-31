@@ -2,6 +2,7 @@
 @author AmigaGuide
 @node MAIN "Welcome"
 This is a @{b}bold@{ub} AmigaGuide preview.
+See http://example.com/guide. Next sentence.
 @{"Next node" LINK second}
 @endnode
 @node second "Second node"
