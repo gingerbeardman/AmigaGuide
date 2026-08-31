@@ -9,6 +9,8 @@
 			<string>AmigaGuide Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
@@ -40,6 +42,8 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.image</string>
+				<string>public.composite-content</string>
 				<string>public.text</string>
 				<string>public.data</string>
 			</array>
