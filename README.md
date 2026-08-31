@@ -1,10 +1,14 @@
 # AmigaGuide
 
-Open [AmigaGuide](https://wiki.amigaos.net/wiki/AmigaGuide) `.guide` documents, and preview them in Finder with Quick Look.
+Open [AmigaGuide](https://wiki.amigaos.net/wiki/AmigaGuide) `.guide` documents. Preview them in Finder with Quick Look, show custom thumbnails, and save as HTML or EPUB.
 
 <img width="882" alt="Amiga Guide Quick Look preview of Directory Opus 4" src="screenshot.png" />
 
-Open a `.guide` file in Amiga Guide, or select one in Finder and press Space. If no preview appears, enable the Quick Look extension in System Settings → Extensions, then turn on Amiga Guide under Quick Look.
+Open a `.guide` file in Amiga Guide, or select one in Finder and press Space. File → Save… writes HTML or EPUB. If no preview or thumbnail appears, enable the Quick Look extension in System Settings → Extensions, then turn on Amiga Guide under Quick Look.
+
+<img width="700" alt="Finder thumbnails of Directory Opus 4 as EPUB, AmigaGuide, and HTML" src="thumbnails.png" />
+
+## Further reading
 
 Conversion uses [GuideML](https://www.unsatisfactorysoftware.co.uk/index.php?pg=guideml) (vendored, with small macOS patches, in `GuideML/`).
 
